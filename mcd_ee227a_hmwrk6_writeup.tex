@@ -1,0 +1,120 @@
+\documentclass[a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{mathpazo}
+\setmainfont
+     [ BoldFont       = texgyrepagella-bold.otf ,
+       ItalicFont     = texgyrepagella-italic.otf ,
+       BoldItalicFont = texgyrepagella-bolditalic.otf ]
+     {texgyrepagella-regular.otf}
+\setmainfont{Gill Sans MT}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{physics}
+
+%\DeclareMathOperator{\Tr}{Tr}
+
+\title{Convex Optimization - Homework 6: Applications}
+
+\author{David McPherson}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Problem 1: Two Stage Decision Making}
+\subsection{Demand Measured prior to Purchase}
+
+The linear program formulation for maximizing profit is:
+
+\begin{equation}
+\max \left \{ [\begin{matrix}25 & 10\end{matrix}]\left [\begin{matrix}s_1 \\ s_2 \end{matrix} \right ]
+-[\begin{matrix}3.50 & 2.60 & -6.80\end{matrix}] \left [\begin{matrix}x_1 \\ x_2 \\ x_3 \end{matrix} \right ]
+\right \}
+\end{equation}
+
+subject to
+
+\begin{equation}
+s_i \leq D_i , \forall i \in {1,2}
+\end{equation}
+\begin{equation}
+s_i \leq y_i , \forall i \in {1,2}
+\end{equation}
+\begin{equation}
+\left[
+\begin{matrix}
+3 & 1 \\
+1 & 0 \\
+1 & 1 \\
+\end{matrix}
+\right]
+\left[\begin{matrix}y_1 \\ y_2\end{matrix}\right]
+\leq
+\left[\begin{matrix}x_1 \\ x_2 \\ x_3 \end{matrix}\right]
+\end{equation}
+
+where $y_i$ is the quantity of drug $i$ produced, $s_i$ is the quantity of drug $i$ sold, $D_i$ is the quantity of drug $i$ demanded, and $x_i$ is the quantity of ingredient $i$ purchased.
+
+Implementing this formulation in CVX with a demand of $D_1 = 150$ and $D_2 = 200$ yields a profit of \$765 by producing and selling 150 units of Drug 1 and 0 units of Drug 2. To produce this, 450 units of Ingredient 1, 150 units of Ingredient 2, and 150 units of Ingredient 3 were acquired.
+
+\subsection{Profit Maximization for Three Demand Scenarios}
+The same formulation (with knowing the demand ahead of purchasing, producing, and selling) was used to maximize profit for each of the three demand scenarios. The maximum profit and associated drug production, selling, and ingredient purchases are filed in Table 1.
+
+\begin{tabular}{c  c  c c  c c c c c}
+           & Profit & $s_1$ & $s_2$ & $y_1$ & $y_2$ & $x_1$ & $x_2$ & $x_3$ \\
+Scenario 1 &  510   & 100   & 0     & 100   & 0     & 300   & 100   & 100   \\
+Scenario 2 &  765   & 150   & 0     & 150   & 0     & 450   & 150   & 150   \\
+Scenario 3 & 1020   & 200   & 0     & 200   & 0     & 600   & 200   & 200   \\
+\end{tabular}
+
+Note that no amount of Drug 2 was produced, since we produce a \$0.60 loss with each sale.
+
+\subsection{Demand Measured prior to Selling}
+Both of the above analyses assume perfect information with demand being known before ingredients are acquired and any manufacturing takes place.
+However, a more realistic scenario would be one where we only learn demand after acquisition and assembly has already taken place.
+Now we need to optimize one choice of the $x_i$ and $y_1$ such that the expected profit is maximized.
+We will use superscripts to denote versions of the variables that depend on the scenario.
+In this analysis, we have $s_i^j$ denoting the amount of drug $i$ sold in demand scenario $j$ and $D_i^j$ denoting the demand for drug $i$ in the same scenario $j$.
+Therefore our expected profit optimization problem can be formulated as:
+
+\begin{equation}
+\max \left \{ [\begin{matrix}25 & 10\end{matrix}]
+\left[ 0.2 \left [\begin{matrix}s_1^1 \\ s_2^1 \end{matrix} \right ] + 0.5 \left [\begin{matrix}s_1^2 \\ s_2^2 \end{matrix} \right ] + 0.3 \left [\begin{matrix}s_1^3 \\ s_2^3 \end{matrix} \right ] \right]
+-[\begin{matrix}3.50 & 2.60 & -6.80\end{matrix}] \left [\begin{matrix}x_1 \\ x_2 \\ x_3 \end{matrix} \right ]
+\right \}
+\end{equation}
+
+subject to
+
+\begin{equation}
+s_i^j \leq D_i^j , \forall i \in {1,2} , \forall j \in {1,2,3}
+\end{equation}
+\begin{equation}
+s_i^j \leq y_i , \forall i \in {1,2} , \forall j \in {1,2,3}
+\end{equation}
+\begin{equation}
+\left[
+\begin{matrix}
+3 & 1 \\
+1 & 0 \\
+1 & 1 \\
+\end{matrix}
+\right]
+\left[\begin{matrix}y_1 \\ y_2\end{matrix}\right]
+\leq
+\left[\begin{matrix}x_1 \\ x_2 \\ x_3 \end{matrix}\right]
+\end{equation}
+
+\subsection{Demand Measured prior to Manufacture}
+
+\section{Problem 2: }
+
+\section{Problem 3: }
+
+\end{document}
