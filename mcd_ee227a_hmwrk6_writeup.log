@@ -1,8 +1,8 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  21 APR 2016 13:54
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  21 APR 2016 17:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**mcd_ee227a_hmwrk6_writeup
+**mcd_ee227a_hmwrk6_writeup.tex
 (./mcd_ee227a_hmwrk6_writeup.tex
 LaTeX2e <2015/01/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
@@ -1803,14 +1803,14 @@ File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 ) [1
 
 ] [2]
-(./mcd_ee227a_hmwrk6_writeup.aux) ) 
+[3] (./mcd_ee227a_hmwrk6_writeup.aux) ) 
 Here is how much of TeX's memory you used:
  25102 strings out of 493706
  520108 string characters out of 6145769
- 541481 words of memory out of 5000000
+ 543481 words of memory out of 5000000
  28112 multiletter control sequences out of 15000+600000
  15156 words of font info for 66 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 62i,9n,58p,10393b,225s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,9n,58p,10397b,225s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on mcd_ee227a_hmwrk6_writeup.pdf (2 pages).
+Output written on mcd_ee227a_hmwrk6_writeup.pdf (3 pages).
