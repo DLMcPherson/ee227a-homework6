@@ -27,7 +27,7 @@
 \begin{document}
 \maketitle
 
-\section{Problem 1: Two Stage Decision Making}
+\section{Exercise 1: Two Stage Decision Making}
 \subsection{Demand Measured prior to Purchase}
 
 The linear program formulation for maximizing profit is:
@@ -160,11 +160,40 @@ Solving this formulation in CVX results in an expected profit of \$615.00 with
            & Profit & $s_1$ & $s_2$ & $y_1$ & $y_2$ & $x_1$ & $x_2$ & $x_3$ \\
 Scenario 1 &   15   & 100   & 50    & 100   & 50    &       &       &       \\
 Scenario 2 &  765   & 150   & 0     & 150   & 0     & 450   & 150   & 150   \\
-Scenario 3 &  765   & 150   & 0     &       &       &       &       &       \\
+Scenario 3 &  765   & 150   & 0     & 150   & 0     &       &       &       \\
 \end{tabular}
 
-\section{Problem 2: }
+\section{Exercise 2: Dicsount Factor Curve Fitting }
+\subsection{Formulation}
+The formulation for this problem is:
 
-\section{Problem 3: }
+\begin{equation}
+  \begin{split}
+\min_a \sum_{i=1}^I | p_0 f(t_0^{(i)}) +  p_1 f(t_1^{(i)}) |
+\\ = \min_a \sum_{i=1}^I | p_0 (a_{0,k_{i0}} + a_{1,k_{i0}} t_0^{(i)} + a_{2,k_{i0}} t_0^{(i) 2} ) 
++  p_1 (a_{0,k_{i1}} + a_{1,k_{i1}} t_1^{(i)} + a_{2,k_{i1}} t_1^{(i) 2} ) |
+  \end{split}
+\end{equation}
+
+where $k_{ij}$ is the interval that $t_j^{(i)}$ falls in.
+
+Subject to the constraints:
+
+\begin{equation}
+a
+\end{equation}
+
+\subsection{CVX Solution}
+
+\section{Exercise 3: Probability Density Estimation}
+\subsection{Reward Function}
+
+\subsection{Optimization Formulation}
+
+\subsection{CVX Solution}
+
+\subsection{Non-Increasing Requirement}
+
+\subsection{Bounded Slope Requirements}
 
 \end{document}
