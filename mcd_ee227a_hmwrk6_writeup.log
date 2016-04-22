@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  21 APR 2016 18:57
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  21 APR 2016 19:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1803,6 +1803,15 @@ File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 ) [1
 
 ] [2]
+Overfull \hbox (19.99004pt too wide) detected at line 187
+\OML/zplm/m/it/10 a[] \OT1/zplm/m/n/10 + \OML/zplm/m/it/10 a[]m[] \OT1/zplm/m/n
+/10 + \OML/zplm/m/it/10 a[]m[] \OT1/zplm/m/n/10 = \OML/zplm/m/it/10 a[] \OT1/zp
+lm/m/n/10 + \OML/zplm/m/it/10 a[]m[] \OT1/zplm/m/n/10 + \OML/zplm/m/it/10 a[]m[
+]\OT1/ppl/m/n/10 , \OMS/zplm/m/n/10 8\OML/zplm/m/it/10 k \OMS/zplm/m/n/10 2 f\O
+T1/ppl/m/n/10 1, 2, [] , \OML/zplm/m/it/10 N \OMS/zplm/m/n/10 ^^@ \OT1/ppl/m/n/
+10 1\OMS/zplm/m/n/10 g
+ []
+
 [3] (./mcd_ee227a_hmwrk6_writeup.aux) ) 
 Here is how much of TeX's memory you used:
  25102 strings out of 493706
