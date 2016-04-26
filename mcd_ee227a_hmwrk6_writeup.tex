@@ -201,7 +201,7 @@ Subject to the constraints:
 
 \subsection{CVX Solution}
 A MATLAB script was written up to solve this formulation using CVX.
-The resultant discount curve fits are shown in Figs. 1 and 2 below, with their error values in the caption.
+The resultant discount curve fits are shown in Figs. 1-4 below, with their error values in the caption.
 
 \begin{figure}[!ht]
   \centering
@@ -279,13 +279,13 @@ Therefore the formulation is:
 
 Note here that we define our parameters $c_i$ and $d_i$ as a line with respect to interval-local coordinates rather than global coordinates.
 The interval-local coordinates start at 0 and range up to $r$ when the interval ends.
-To transform from the universal coordinates $x$ into the local coordinates use $x' = c_{i_j}(x - i_j r - r$ like we do in the objective function.
+To transform from the universal coordinates $x$ into the local coordinates use $x' = c_{i_j}(x - i_j r - r) $ like we do in the objective function.
 This definition in local coordinates greatly simplifies the definition of the constraints as the borders are always at 0 and $r$.
 
 \subsection{CVX Solution}
 A Matlab script for optimizing this formulation using CVX was composed and ran.
 The resulting best fit corresponded approximately to a sum of Kroniker deltas at each sample point each weighted to make the total sum to 1 (as constrained, since this is a PDF).
-The plot is shown in Fig. 3 along with the baseline and some future fits to be described in the following sections.
+The plot is shown in Fig. 5 along with the baseline and some future fits to be described in the following sections.
 Note that the plot is clipped since and that these "deltas"  actually stretch extremely high up to around 25.
 This clipping is to keep the other fits and the baseline visible.
 
@@ -305,7 +305,7 @@ Our elegant interval-local coordinate parametrization simplifies this constraint
   c_i \leq 0 \; \forall i
 \end{equation}
 
-Adding this constraint to our CVX optimization results in the plot labeled "Non-Increasing" in Fig. 3.
+Adding this constraint to our CVX optimization results in the plot labeled "Non-Increasing" in Fig. 5.
 Note how much better this PDF estimation is then the drastically over-fit "deltas" from the previous optimization.
 
 \subsection{Bounded Slope Requirements}
@@ -319,13 +319,13 @@ To encode $\pm 20\%$ bounds on the slope at all times we use:
 
 \begin{equation}
   \begin{aligned}
-    c_i \leq -0.8 e^{-x} & \forall x \in I_i \rightarrow & c_i \leq -0.8 e^{-r(i-1)}
+    c_i \leq -0.8 e^{-x} & \forall x \in I_i \rightarrow & c_i \leq -0.8 e^{-r(i-1)} \\
     c_i \geq -1.2 e^{-x} & \forall x \in I_i \rightarrow & c_i \geq -1.2 e^{-ri}
   \end{aligned}
 \end{equation}
 
 where the implication step was made by choosing the tightest bound in the interval $I_i$.
 
-Adding this constraint produces the closest approximation to the true PDF as plotted in Fig. 3.
+Adding this constraint produces the closest approximation to the true PDF as plotted in Fig. 5.
 
 \end{document}
