@@ -34,17 +34,17 @@ The linear program formulation for maximizing profit is:
 
 \begin{equation}
 \max \left \{ [\begin{matrix}25 & 10\end{matrix}]\left [\begin{matrix}s_1 \\ s_2 \end{matrix} \right ]
--[\begin{matrix}3.50 & 2.60 & -6.80\end{matrix}] \left [\begin{matrix}x_1 \\ x_2 \\ x_3 \end{matrix} \right ]
+-[\begin{matrix}3.50 & 2.60 & 6.80\end{matrix}] \left [\begin{matrix}x_1 \\ x_2 \\ x_3 \end{matrix} \right ]
 \right \}
 \end{equation}
 
 subject to
 
 \begin{equation}
-s_i \leq D_i , \forall i \in \{1,2\}
+s_i \leq D_i , \hspace{15 mm} \forall i \in \{1,2\}
 \end{equation}
 \begin{equation}
-s_i \leq y_i , \forall i \in \{1,2\}
+s_i \leq y_i , \hspace{15 mm} \forall i \in \{1,2\}
 \end{equation}
 \begin{equation}
 \left[
@@ -75,10 +75,14 @@ Scenario 3 & 1020   & 200   & 0     & 200   & 0     & 600   & 200   & 200   \\
 
 Note that no amount of Drug 2 was produced, since we produce a \$0.60 loss with each sale.
 
+In each scenario we have perfect information and will choose to make the maximum profit.
+The expectation on this maximum profit over all three scenarios is $ \$790.5$.
+
 \subsection{Demand Measured prior to Selling}
 Both of the above analyses assume perfect information with demand being known before ingredients are acquired and any manufacturing takes place.
-However, a more realistic scenario would be one where we only learn demand after acquisition and assembly has already taken place.
-Now we need to optimize one choice of the $x_i$ and $y_1$ such that the expected profit is maximized.
+However, a more realistic scenario would be one where we only learn demand after acquisition and assembly have already taken place.
+Now we need to optimize one choice of the $x_i$ and $y_i$ such that the expected profit is maximized.
+
 We will use superscripts to denote versions of the variables that depend on the scenario.
 In this analysis, we have $s_i^j$ denoting the amount of drug $i$ sold in demand scenario $j$ and $D_i^j$ denoting the demand for drug $i$ in the same scenario $j$.
 Therefore our expected profit optimization problem can be formulated as:
@@ -86,7 +90,7 @@ Therefore our expected profit optimization problem can be formulated as:
 \begin{equation}
 \max \left \{ [\begin{matrix}25 & 10\end{matrix}]
 \left( 0.2 \left [\begin{matrix}s_1^1 \\ s_2^1 \end{matrix} \right ] + 0.5 \left [\begin{matrix}s_1^2 \\ s_2^2 \end{matrix} \right ] + 0.3 \left [\begin{matrix}s_1^3 \\ s_2^3 \end{matrix} \right ] \right)
--[\begin{matrix}3.50 & 2.60 & -6.80\end{matrix}] \left [\begin{matrix}x_1 \\ x_2 \\ x_3 \end{matrix} \right ]
+-[\begin{matrix}3.50 & 2.60 & 6.80\end{matrix}] \left [\begin{matrix}x_1 \\ x_2 \\ x_3 \end{matrix} \right ]
 \right \}
 \end{equation}
 
@@ -111,7 +115,7 @@ s_i^j \leq y_i , \forall i \in \{1,2\} , \forall j \in \{1,2,3\}
 \left[\begin{matrix}x_1 \\ x_2 \\ x_3 \end{matrix}\right]
 \end{equation}
 
-Solving this formulation in CVX results in an expected profit of \$515.00 with
+Solving this formulation in CVX results in an expected profit of \$515.00 with the profit resulting from our choice in each scenario being recorded in the next table.
 
 \begin{tabular}{c  c  c c  c c c c c}
            & Profit & $s_1$ & $s_2$ & $y_1$ & $y_2$ & $x_1$ & $x_2$ & $x_3$ \\
@@ -128,7 +132,7 @@ Now, our expected profit optimization problem can be formulated as:
 \begin{equation}
 \max \left \{ [\begin{matrix}25 & 10\end{matrix}]
 \left( 0.2 \left [\begin{matrix}s_1^1 \\ s_2^1 \end{matrix} \right ] + 0.5 \left [\begin{matrix}s_1^2 \\ s_2^2 \end{matrix} \right ] + 0.3 \left [\begin{matrix}s_1^3 \\ s_2^3 \end{matrix} \right ] \right)
--[\begin{matrix}3.50 & 2.60 & -6.80\end{matrix}] \left [\begin{matrix}x_1 \\ x_2 \\ x_3 \end{matrix} \right ]
+-[\begin{matrix}3.50 & 2.60 & 6.80\end{matrix}] \left [\begin{matrix}x_1 \\ x_2 \\ x_3 \end{matrix} \right ]
 \right \}
 \end{equation}
 
@@ -154,7 +158,7 @@ s_i^j \leq y_i^j, \forall i \in \{1,2\} , \forall j \in \{1,2,3\}
 , \forall j \in \{1,2,3\}
 \end{equation}
 
-Solving this formulation in CVX results in an expected profit of \$615.00 with
+Solving this formulation in CVX results in an expected profit of \$615.00 with the resulting profits and units produced recorded in the next table.
 
 \begin{tabular}{c  c  c c  c c c c c}
            & Profit & $s_1$ & $s_2$ & $y_1$ & $y_2$ & $x_1$ & $x_2$ & $x_3$ \\
