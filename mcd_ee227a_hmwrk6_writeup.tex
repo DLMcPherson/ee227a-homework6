@@ -203,6 +203,13 @@ Subject to the constraints:
   \end{aligned}
 \end{equation}
 
+where $m_i$ is the left endpoint of the $i$th interval and $m_{N+1}$ is the right endpoint of the final interval.
+The formula for obtaining the $m_i$ is:
+
+$$
+m_i = (i-1) \frac{T}{N}
+$$
+
 \subsection{CVX Solution}
 A MATLAB script was written up to solve this formulation using CVX.
 The resultant discount curve fits are shown in Figs. 1-4 below, with their error values in the caption.
@@ -235,13 +242,13 @@ The resultant discount curve fits are shown in Figs. 1-4 below, with their error
 
 \section{Exercise 3: Probability Density Estimation}
 \subsection{Reward Function}
-Let $F$ be the true distribution from which the ten samples $x_i$ are drawn.
-The optimization problem which gives the maximum likelihood estimator $f$ is:
+Let $F(x)$ be the true distribution from which the ten samples $x_i$ are drawn.
+The optimization problem which gives the maximum likelihood estimator $f(x)$ is:
 
 \begin{equation*}
 \begin{aligned}
 & \underset{f}{\text{maximize}}
-&  \Pi_{i=1}^{10} f(x) \\
+&  \Pi_{i=1}^{10} f(x_i) \\
 & \text{subject to}
 &  \int_X f(x) dx = 1 \\
 & & f(x) \geq 0, \; \forall x
@@ -253,8 +260,8 @@ Since the $\log$ function is monotone increasing, this is an equivalent optimiza
 \begin{equation*}
 \begin{aligned}
 & \underset{f}{\text{maximize}}
-&  \log \left( \Pi_{i=1}^{10} f(x) \right) \\
-& &  = \sum_{i=1}^{10} \log(f(x)) \\
+&  \log \left( \Pi_{i=1}^{10} f(x_i) \right) \\
+& &  = \sum_{i=1}^{10} \log(f(x_i)) \\
 & \text{subject to}
 &  \int_X f(x) dx = 1 \\
 & & f(x) \geq 0, \; \forall x
@@ -265,7 +272,9 @@ Since the $\log$ function is monotone increasing, this is an equivalent optimiza
 if not necessarily the same optimal value $p^*$.
 
 \subsection{Optimization Formulation}
-Define the interval that $x_i$ falls on to be from 0 to $X$.
+We choose for the function $f(x)$ to be parametrized by $N$ linear pieces defined over evenly subdivided intervals.
+
+Define the interval that all the $x_i$ fall into to be from 0 to $X$ (in step 3 we will make this 0 to $X$=4).
 To divide this interval into $N$ evenly spaced sub-intervals, each sub-interval must be $r=X/N$.
 Therefore the formulation is:
 
@@ -282,7 +291,7 @@ Therefore the formulation is:
 \end{equation*}
 
 Note here that we define our parameters $c_i$ and $d_i$ as a line with respect to interval-local coordinates rather than global coordinates.
-The interval-local coordinates start at 0 and range up to $r$ when the interval ends.
+The interval-local coordinates start at 0 (at the interval's left endpoint) and range up to $r$ when the interval ends.
 To transform from the universal coordinates $x$ into the local coordinates use $x' = c_{i_j}(x - i_j r - r) $ like we do in the objective function.
 This definition in local coordinates greatly simplifies the definition of the constraints as the borders are always at 0 and $r$.
 
@@ -290,7 +299,7 @@ This definition in local coordinates greatly simplifies the definition of the co
 A Matlab script for optimizing this formulation using CVX was composed and ran.
 The resulting best fit corresponded approximately to a sum of Kroniker deltas at each sample point each weighted to make the total sum to 1 (as constrained, since this is a PDF).
 The plot is shown in Fig. 5 along with the baseline and some future fits to be described in the following sections.
-Note that the plot is clipped since and that these "deltas"  actually stretch extremely high up to around 25.
+Note that the plot is clipped, since these "deltas"  actually stretch extremely high up to around $f=25$.
 This clipping is to keep the other fits and the baseline visible.
 
 \begin{figure}[ht!]
@@ -301,12 +310,12 @@ This clipping is to keep the other fits and the baseline visible.
 
 \subsection{Non-Increasing Requirement}
 We want to encode that the PDF is non-decreasing.
-That is to that higher values of $x$ were never more likely than lower values.
+That is to say that higher values of $x$ are never more likely than lower values.
 This requirement becomes one additional constraint.
 Our elegant interval-local coordinate parametrization simplifies this constraint to just:
 
 \begin{equation}
-  c_i \leq 0 \; \forall i
+  c_i \leq 0 , \; \forall i
 \end{equation}
 
 Adding this constraint to our CVX optimization results in the plot labeled "Non-Increasing" in Fig. 5.
@@ -331,5 +340,6 @@ To encode $\pm 20\%$ bounds on the slope at all times we use:
 where the implication step was made by choosing the tightest bound in the interval $I_i$.
 
 Adding this constraint produces the closest approximation to the true PDF as plotted in Fig. 5.
+This curve is qualitatively much closer to the true PDF. Success.
 
 \end{document}
