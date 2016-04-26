@@ -1,0 +1,17 @@
+\begin{exercise}[Discount Factor Curve Fitting]\rm
+In this exercise we will estimate a discount factor curve by fitting second-order epi-splines to data. We have $I$ instruments, each associated with a payment at a certain time and a return at a later time. Let $p^{(i)}_0$ and $p^{(i)}_1$ denote the payment and return on instrument $i$, occuring at $t^{(i)}_0$ and $t^{(i)}_1$ respectively. Then we wish to fit a function of time $f$ so that
+\[
+p^{(i)}_0 f(t^{(i)}_0) + p^{(i)}_1 f(t^{(i)}_1) \approx 0,\ \forall i \in \{1,\ldots,I\}
+\]
+The curve represents the value today of one dollar recieved in the future. The function $f$ should be nonnegative, nonincreasing, and continuously differentiable, with $f(0) = 1$. We will also restrict $f$ to be piecewise quadratic.
+
+\begin{enumerate}
+\item Assume that the timeline runs from $0$ to $T$. We will divide the timeline into $N$ equally sized segments, and find the optimal quadratic function for each segment. That is, when $t$ falls in segment $k$, $f(t) = a_{0,k} + a_{1,k}t + a_{2,k}t^2$ for some set of $3N$ coeefficients $a_{ij}$. We seek to minimize the quantity
+\[
+\sum_{i=1}^I \left| p^{(i)}_0 f(t^{(i)}_0) + p^{(i)}_1 f(t^{(i)}_1) \right|
+\]
+Formulate the convex optimization problem that you will solve to estimate the discount factor curve. Make sure that $f(t)$ has all the desired properties for $t \in \{0,\ldots,T\}$.
+
+\item The file \texttt{data.mat} contains a $21 \times 4$ matrix. Each row corresponds to one instrument. The elements of row $i$ are, in order, $p^{(i)}_0,t^{(i)}_0,p^{(i)}_1$, and $t^{(i)}_1$. In this dataset, $T = 1459$. Use CVX to solve the problem given these instruments for $N = 1, 5, 10, 20$, and plot each resulting discount factor curve estimate over time.
+\end{enumerate}
+\end{exercise}

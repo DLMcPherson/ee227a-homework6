@@ -168,11 +168,11 @@ Scenario 3 &  765   & 150   & 0     & 150   & 0     &       &       &       \\
 The formulation for this problem is:
 
 \begin{equation}
-  \begin{split}
-\min_a \sum_{i=1}^I | p_0 f(t_0^{(i)}) +  p_1 f(t_1^{(i)}) |
-\\ = \min_a \sum_{i=1}^I | p_0 (a_{0,k_{i0}} + a_{1,k_{i0}} t_0^{(i)} + a_{2,k_{i0}} t_0^{(i) 2} )
+\begin{aligned}
+\min_a & \sum_{i=1}^I | p_0 f(t_0^{(i)}) +  p_1 f(t_1^{(i)}) |
+\\ = \min_a & \sum_{i=1}^I | p_0 (a_{0,k_{i0}} + a_{1,k_{i0}} t_0^{(i)} + a_{2,k_{i0}} t_0^{(i) 2} )
 +  p_1 (a_{0,k_{i1}} + a_{1,k_{i1}} t_1^{(i)} + a_{2,k_{i1}} t_1^{(i) 2} ) |
-  \end{split}
+\end{aligned}
 \end{equation}
 
 where $k_{ij}$ is the interval that $t_j^{(i)}$ falls in.
@@ -180,42 +180,152 @@ where $k_{ij}$ is the interval that $t_j^{(i)}$ falls in.
 Subject to the constraints:
 
 \begin{equation}
-a_{0,k} + a_{1,k} m_{k+1} + a_{2,k} m_{k+1}^2
-=
-a_{0,k+1} + a_{1,k+1} m_{k+1} + a_{2,k+1} m_{k+1}^2
-, \forall k \in \{1,2,\dots,N-1\}
-\end{equation}
-
-\begin{equation}
-a_{1,k} + 2 a_{2,k} m_{k+1}
-=
-a_{1,k+1} + 2 a_{2,k+1} m_{k+1}
-, \forall k \in \{1,2,\dots,N-1\}
-\end{equation}
-
-\begin{equation}
-\begin{matrix}
-a_{1,k} + 2 a_{2,k} m_k \leq 0
-a_{1,k} + 2 a_{2,k} m_{k+1} \leq 0
-\end{matrix}
-, \forall k \in \{1,2,\dots,N\}
-\end{equation}
-
-\begin{equation}
-a_{0,N} + a_{1,N} T + a_{2,N} T^2 \geq 0
+  \begin{aligned}
+    a_{0,k} + a_{1,k} m_{k+1} + a_{2,k} m_{k+1}^2
+    &=
+    a_{0,k+1} + a_{1,k+1} m_{k+1} + a_{2,k+1} m_{k+1}^2
+    , &\forall k \in \{1,2,\dots,N-1\}
+    \\
+    a_{1,k} + 2 a_{2,k} m_{k+1}
+    &=
+    a_{1,k+1} + 2 a_{2,k+1} m_{k+1}
+    , &\forall k \in \{1,2,\dots,N-1\}
+    \\
+    a_{1,k} + 2 a_{2,k} m_k     &\leq 0 , & \forall k \in \{1,2,\dots,N\}
+    \\
+    a_{1,k} + 2 a_{2,k} m_{k+1} &\leq 0 , & \forall k \in \{1,2,\dots,N\}
+    \\
+    a_{0,N} + a_{1,N} T + a_{2,N} T^2 &\geq 0 &
+  \end{aligned}
 \end{equation}
 
 \subsection{CVX Solution}
+A MATLAB script was written up to solve this formulation using CVX.
+The resultant discount curve fits are shown in Figs. 1 and 2 below, with their error values in the caption.
+
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=1.0\textwidth]{N20.eps}
+    \caption{Discount Curve fit for N=20 (optimum error = 1.53704)}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=1.0\textwidth]{N10.eps}
+    \caption{Discount Curve fit for N=10 (optimum error = 1.73544)}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=1.0\textwidth]{N5.eps}
+    \caption{Discount Curve fit for N=5 (optimum error = 2.0067)}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=1.0\textwidth]{N1.eps}
+    \caption{Discount Curve fit for N=1 (optimum error = NaN)}
+  \end{minipage}
+\end{figure}
 
 \section{Exercise 3: Probability Density Estimation}
 \subsection{Reward Function}
+Let $F$ be the true distribution from which the ten samples $x_i$ are drawn.
+The optimization problem which gives the maximum likelihood estimator $f$ is:
+
+\begin{equation*}
+\begin{aligned}
+& \underset{f}{\text{maximize}}
+&  \Pi_{i=1}^{10} f(x) \\
+& \text{subject to}
+&  \int_X f(x) dx = 1 \\
+& & f(x) \geq 0, \; \forall x
+\end{aligned}
+\end{equation*}
+
+Since the $\log$ function is monotone increasing, this is an equivalent optimization problem to:
+
+\begin{equation*}
+\begin{aligned}
+& \underset{f}{\text{maximize}}
+&  \log \left( \Pi_{i=1}^{10} f(x) \right) \\
+& &  = \sum_{i=1}^{10} \log(f(x)) \\
+& \text{subject to}
+&  \int_X f(x) dx = 1 \\
+& & f(x) \geq 0, \; \forall x
+\end{aligned}
+\end{equation*}
+
+"Equivalent" in the sense that the optimization problem has the same minimizing choice of $f^*(x)$,
+if not necessarily the same optimal value $p^*$.
 
 \subsection{Optimization Formulation}
+Define the interval that $x_i$ falls on to be from 0 to $X$.
+To divide this interval into $N$ evenly spaced sub-intervals, each sub-interval must be $r=X/N$.
+Therefore the formulation is:
+
+\begin{equation*}
+\begin{aligned}
+& \underset{c,d}{\text{maximize}}
+& \sum_{i=1}^{10} \log(c_{i_j}(x - i_j r - r) + d_{i_j}) &\\
+& \text{subject to}
+&  \sum_{i=1}^{N} (d_i r + \frac{1}{2} c_i r^2) = 1 & \\
+& & d_i \geq 0,               & & \forall i \in {1,\dots,N} \\
+& & d_i + c_i r \geq 0,       & & \forall i \in {1,\dots,N} \\
+& & d_{i+1} = d_i + c_i r,    & & \forall i \in {1,\dots,N-1} \\
+\end{aligned}
+\end{equation*}
+
+Note here that we define our parameters $c_i$ and $d_i$ as a line with respect to interval-local coordinates rather than global coordinates.
+The interval-local coordinates start at 0 and range up to $r$ when the interval ends.
+To transform from the universal coordinates $x$ into the local coordinates use $x' = c_{i_j}(x - i_j r - r$ like we do in the objective function.
+This definition in local coordinates greatly simplifies the definition of the constraints as the borders are always at 0 and $r$.
 
 \subsection{CVX Solution}
+A Matlab script for optimizing this formulation using CVX was composed and ran.
+The resulting best fit corresponded approximately to a sum of Kroniker deltas at each sample point each weighted to make the total sum to 1 (as constrained, since this is a PDF).
+The plot is shown in Fig. 3 along with the baseline and some future fits to be described in the following sections.
+Note that the plot is clipped since and that these "deltas"  actually stretch extremely high up to around 25.
+This clipping is to keep the other fits and the baseline visible.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.9\textwidth]{Question3f.eps}
+\caption{Probability Density Function Fits}
+\end{figure}
 
 \subsection{Non-Increasing Requirement}
+We want to encode that the PDF is non-decreasing.
+That is to that higher values of $x$ were never more likely than lower values.
+This requirement becomes one additional constraint.
+Our elegant interval-local coordinate parametrization simplifies this constraint to just:
+
+\begin{equation}
+  c_i \leq 0 \; \forall i
+\end{equation}
+
+Adding this constraint to our CVX optimization results in the plot labeled "Non-Increasing" in Fig. 3.
+Note how much better this PDF estimation is then the drastically over-fit "deltas" from the previous optimization.
 
 \subsection{Bounded Slope Requirements}
+Since our true PDF is an exponential with mean 1, the true slope of this PDF is:
+
+$$
+\frac{df}{dx} = -e^{-x}
+$$
+
+To encode $\pm 20\%$ bounds on the slope at all times we use:
+
+\begin{equation}
+  \begin{aligned}
+    c_i \leq -0.8 e^{-x} & \forall x \in I_i \rightarrow & c_i \leq -0.8 e^{-r(i-1)}
+    c_i \geq -1.2 e^{-x} & \forall x \in I_i \rightarrow & c_i \geq -1.2 e^{-ri}
+  \end{aligned}
+\end{equation}
+
+where the implication step was made by choosing the tightest bound in the interval $I_i$.
+
+Adding this constraint produces the closest approximation to the true PDF as plotted in Fig. 3.
 
 \end{document}

@@ -1,0 +1,17 @@
+\begin{exercise}[Probability Density Estimation]\rm
+In this exercise we will estimate a probability density function based on a few observations. We will construct the estimate using first-order epi-splines. Data is provided in \texttt{samples.mat}.
+
+\begin{enumerate}
+\item For a probability density function $f$ and samples $x_1,\ldots,x_{10}$, write down the optimization problem whose solution is the maximum likelihood estimator of $f$.
+
+\item We will restrict $f$ to be piecewise linear and continuous, with $N$ segments as in Exercise 2. Formulate the appropriate convex optimization problem for maximum likelihood estimation, and explain why it is convex in this case. Make sure to enforce constraints to ensure that $f$ is a valid PDF, and has the desired properties.
+
+\item Use CVX to solve the problem you formulated above, fitting $f$ to the data provided with $N = 1000$ on the interval $[0,4]$. The samples were drawn from an exponential distribution with mean 1. Plot the function you recovered along with the true PDF and comment qualitatively on the accuracy.
+
+\item What if we have more information about the nature of the PDF we are trying to estimate? Add the constraint that $f$ is nonincreasing. Solve the new problem and plot the result and true PDF again. Comment on the accuracy and any improvement you see.
+
+\item What if we also knew upper and lower bounds on the slope of the PDF? Add constraints that restrict the slope of $f$ to be within $\pm 20\%$ of the true value. For this exercise, you can compute these bounds from the exponential distribution PDF with mean 1. Plot once more and comment.
+
+\end{enumerate}
+
+\end{exercise}

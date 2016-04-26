@@ -1,8 +1,8 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  21 APR 2016 19:10
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  25 APR 2016 22:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**mcd_ee227a_hmwrk6_writeup.tex
+**mcd_ee227a_hmwrk6_writeup
 (./mcd_ee227a_hmwrk6_writeup.tex
 LaTeX2e <2015/01/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
@@ -1803,23 +1803,39 @@ File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 ) [1
 
 ] [2]
-Overfull \hbox (19.99004pt too wide) detected at line 187
-\OML/zplm/m/it/10 a[] \OT1/zplm/m/n/10 + \OML/zplm/m/it/10 a[]m[] \OT1/zplm/m/n
-/10 + \OML/zplm/m/it/10 a[]m[] \OT1/zplm/m/n/10 = \OML/zplm/m/it/10 a[] \OT1/zp
-lm/m/n/10 + \OML/zplm/m/it/10 a[]m[] \OT1/zplm/m/n/10 + \OML/zplm/m/it/10 a[]m[
-]\OT1/ppl/m/n/10 , \OMS/zplm/m/n/10 8\OML/zplm/m/it/10 k \OMS/zplm/m/n/10 2 f\O
-T1/ppl/m/n/10 1, 2, [] , \OML/zplm/m/it/10 N \OMS/zplm/m/n/10 ^^@ \OT1/ppl/m/n/
-10 1\OMS/zplm/m/n/10 g
+Overfull \hbox (35.54546pt too wide) detected at line 200
+[] []
  []
 
-[3] (./mcd_ee227a_hmwrk6_writeup.aux) ) 
-Here is how much of TeX's memory you used:
- 25102 strings out of 493706
- 520108 string characters out of 6145769
- 543481 words of memory out of 5000000
- 28112 multiletter control sequences out of 15000+600000
- 15156 words of font info for 66 fonts, out of 8000000 for 9000
- 1328 hyphenation exceptions out of 8191
- 62i,16n,58p,10397b,225s stack positions out of 5000i,500n,10000p,200000b,80000s
+File: N20.eps Graphic file (type eps)
+<N20.eps>
+File: N10.eps Graphic file (type eps)
+ <N10.eps>
+File: N5.eps Graphic file (type eps)
+ <N5.eps>
+File: N1.eps Graphic file (type eps)
+ <N1.eps> [3] [4]
+Invalid UTF-8 byte or sequence at line 294 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 294 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 294 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 294 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 294 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 294 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 294 replaced by U+FFFD.
+File: Question3f.eps Graphic file (type eps)
+ <Question3f.eps>
+Overfull \hbox (12.82765pt too wide) detected at line 325
+[] []
+ []
 
-Output written on mcd_ee227a_hmwrk6_writeup.pdf (3 pages).
+[5] [6] (./mcd_ee227a_hmwrk6_writeup.aux) ) 
+Here is how much of TeX's memory you used:
+ 25117 strings out of 493706
+ 520308 string characters out of 6145769
+ 543481 words of memory out of 5000000
+ 28119 multiletter control sequences out of 15000+600000
+ 15172 words of font info for 68 fonts, out of 8000000 for 9000
+ 1328 hyphenation exceptions out of 8191
+ 62i,12n,58p,10393b,383s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on mcd_ee227a_hmwrk6_writeup.pdf (6 pages).
